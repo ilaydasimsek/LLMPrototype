@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		CA2B834C2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */; };
-		CA2B834E2C08DE9D00A1DAA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834D2C08DE9D00A1DAA4 /* ContentView.swift */; };
+		CA2B834E2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */; };
 		CA2B83502C08DE9E00A1DAA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */; };
 		CA2B83532C08DE9E00A1DAA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2B83522C08DE9E00A1DAA4 /* Preview Assets.xcassets */; };
 		CA2B835E2C08DE9F00A1DAA4 /* LLMPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B835D2C08DE9F00A1DAA4 /* LLMPrototypeTests.swift */; };
 		CA2B83682C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83672C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift */; };
 		CA2B836A2C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83692C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift */; };
+		CA2B83772C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		CA2B83482C08DE9D00A1DAA4 /* LLMPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLMPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeApp.swift; sourceTree = "<group>"; };
-		CA2B834D2C08DE9D00A1DAA4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHandlerView.swift; sourceTree = "<group>"; };
 		CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2B83522C08DE9E00A1DAA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA2B83542C08DE9E00A1DAA4 /* LLMPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LLMPrototype.entitlements; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		CA2B83632C08DE9F00A1DAA4 /* LLMPrototypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLMPrototypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2B83672C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeUITests.swift; sourceTree = "<group>"; };
 		CA2B83692C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHandlerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */,
-				CA2B834D2C08DE9D00A1DAA4 /* ContentView.swift */,
+				CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */,
 				CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */,
 				CA2B83542C08DE9E00A1DAA4 /* LLMPrototype.entitlements */,
 				CA2B83512C08DE9E00A1DAA4 /* Preview Content */,
+				CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */,
 			);
 			path = LLMPrototype;
 			sourceTree = "<group>";
@@ -259,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2B834E2C08DE9D00A1DAA4 /* ContentView.swift in Sources */,
+				CA2B834E2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift in Sources */,
 				CA2B834C2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift in Sources */,
+				CA2B83772C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

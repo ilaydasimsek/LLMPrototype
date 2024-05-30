@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct LLMPrototypeApp: App {
+    var viewModel = ScreenshotHandlerViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ScreenshotHandlerView(viewModel: viewModel)
         }
     }
 }
