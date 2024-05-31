@@ -3,18 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CA2B834C2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */; };
-		CA2B834E2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */; };
+		CA2B834E2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B834D2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift */; };
 		CA2B83502C08DE9E00A1DAA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */; };
 		CA2B83532C08DE9E00A1DAA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2B83522C08DE9E00A1DAA4 /* Preview Assets.xcassets */; };
 		CA2B835E2C08DE9F00A1DAA4 /* LLMPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B835D2C08DE9F00A1DAA4 /* LLMPrototypeTests.swift */; };
 		CA2B83682C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83672C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift */; };
 		CA2B836A2C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83692C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift */; };
-		CA2B83772C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */; };
+		CA2B83772C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2B83762C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift */; };
+		CA4FF0A82C09010A008FF328 /* llmfarm_core.swift in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0A72C09010A008FF328 /* llmfarm_core.swift */; };
+		CA4FF0AF2C0901EC008FF328 /* llmfarm_core in Frameworks */ = {isa = PBXBuildFile; productRef = CA4FF0AE2C0901EC008FF328 /* llmfarm_core */; };
+		CA4FF0B12C0901EC008FF328 /* llmfarm_core_cpp in Frameworks */ = {isa = PBXBuildFile; productRef = CA4FF0B02C0901EC008FF328 /* llmfarm_core_cpp */; };
+		CA4FF0BE2C0A39A9008FF328 /* ggml-model-q4_k.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */; };
+		CA4FF0BF2C0A39A9008FF328 /* mmproj-model-f16.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +42,7 @@
 /* Begin PBXFileReference section */
 		CA2B83482C08DE9D00A1DAA4 /* LLMPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLMPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeApp.swift; sourceTree = "<group>"; };
-		CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHandlerView.swift; sourceTree = "<group>"; };
+		CA2B834D2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAnalyzerView.swift; sourceTree = "<group>"; };
 		CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2B83522C08DE9E00A1DAA4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA2B83542C08DE9E00A1DAA4 /* LLMPrototype.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LLMPrototype.entitlements; sourceTree = "<group>"; };
@@ -46,7 +51,10 @@
 		CA2B83632C08DE9F00A1DAA4 /* LLMPrototypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLMPrototypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2B83672C08DE9F00A1DAA4 /* LLMPrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeUITests.swift; sourceTree = "<group>"; };
 		CA2B83692C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHandlerViewModel.swift; sourceTree = "<group>"; };
+		CA2B83762C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAnalyzerViewModel.swift; sourceTree = "<group>"; };
+		CA4FF0A72C09010A008FF328 /* llmfarm_core.swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = llmfarm_core.swift; sourceTree = "<group>"; };
+		CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ggml-model-q4_k.gguf"; sourceTree = "<group>"; };
+		CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mmproj-model-f16.gguf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4FF0B12C0901EC008FF328 /* llmfarm_core_cpp in Frameworks */,
+				CA4FF0AF2C0901EC008FF328 /* llmfarm_core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +87,12 @@
 		CA2B833F2C08DE9D00A1DAA4 = {
 			isa = PBXGroup;
 			children = (
+				CA4FF0A72C09010A008FF328 /* llmfarm_core.swift */,
 				CA2B834A2C08DE9D00A1DAA4 /* LLMPrototype */,
 				CA2B835C2C08DE9F00A1DAA4 /* LLMPrototypeTests */,
 				CA2B83662C08DE9F00A1DAA4 /* LLMPrototypeUITests */,
 				CA2B83492C08DE9D00A1DAA4 /* Products */,
+				CA4FF0A92C09010F008FF328 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +109,13 @@
 		CA2B834A2C08DE9D00A1DAA4 /* LLMPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				CA4FF0BD2C0A39A9008FF328 /* BakLLaVAModel */,
 				CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */,
-				CA2B834D2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift */,
+				CA2B834D2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift */,
 				CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */,
 				CA2B83542C08DE9E00A1DAA4 /* LLMPrototype.entitlements */,
 				CA2B83512C08DE9E00A1DAA4 /* Preview Content */,
-				CA2B83762C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift */,
+				CA2B83762C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift */,
 			);
 			path = LLMPrototype;
 			sourceTree = "<group>";
@@ -132,6 +145,22 @@
 			path = LLMPrototypeUITests;
 			sourceTree = "<group>";
 		};
+		CA4FF0A92C09010F008FF328 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA4FF0BD2C0A39A9008FF328 /* BakLLaVAModel */ = {
+			isa = PBXGroup;
+			children = (
+				CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */,
+				CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */,
+			);
+			path = BakLLaVAModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,6 +177,10 @@
 			dependencies = (
 			);
 			name = LLMPrototype;
+			packageProductDependencies = (
+				CA4FF0AE2C0901EC008FF328 /* llmfarm_core */,
+				CA4FF0B02C0901EC008FF328 /* llmfarm_core_cpp */,
+			);
 			productName = LLMPrototype;
 			productReference = CA2B83482C08DE9D00A1DAA4 /* LLMPrototype.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +253,9 @@
 				Base,
 			);
 			mainGroup = CA2B833F2C08DE9D00A1DAA4;
+			packageReferences = (
+				CA4FF0AD2C0901EC008FF328 /* XCLocalSwiftPackageReference "llmfarm_core.swift" */,
+			);
 			productRefGroup = CA2B83492C08DE9D00A1DAA4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,8 +272,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4FF0BE2C0A39A9008FF328 /* ggml-model-q4_k.gguf in Resources */,
 				CA2B83532C08DE9E00A1DAA4 /* Preview Assets.xcassets in Resources */,
 				CA2B83502C08DE9E00A1DAA4 /* Assets.xcassets in Resources */,
+				CA4FF0BF2C0A39A9008FF328 /* mmproj-model-f16.gguf in Resources */,
+				CA4FF0A82C09010A008FF328 /* llmfarm_core.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2B834E2C08DE9D00A1DAA4 /* ScreenshotHandlerView.swift in Sources */,
+				CA2B834E2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift in Sources */,
 				CA2B834C2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift in Sources */,
-				CA2B83772C08E74C00A1DAA4 /* ScreenshotHandlerViewModel.swift in Sources */,
+				CA2B83772C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +624,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CA4FF0AD2C0901EC008FF328 /* XCLocalSwiftPackageReference "llmfarm_core.swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = llmfarm_core.swift;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA4FF0AE2C0901EC008FF328 /* llmfarm_core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = llmfarm_core;
+		};
+		CA4FF0B02C0901EC008FF328 /* llmfarm_core_cpp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = llmfarm_core_cpp;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA2B83402C08DE9D00A1DAA4 /* Project object */;
 }
