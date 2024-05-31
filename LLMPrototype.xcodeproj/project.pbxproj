@@ -18,8 +18,8 @@
 		CA4FF0A82C09010A008FF328 /* llmfarm_core.swift in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0A72C09010A008FF328 /* llmfarm_core.swift */; };
 		CA4FF0AF2C0901EC008FF328 /* llmfarm_core in Frameworks */ = {isa = PBXBuildFile; productRef = CA4FF0AE2C0901EC008FF328 /* llmfarm_core */; };
 		CA4FF0B12C0901EC008FF328 /* llmfarm_core_cpp in Frameworks */ = {isa = PBXBuildFile; productRef = CA4FF0B02C0901EC008FF328 /* llmfarm_core_cpp */; };
-		CA4FF0BE2C0A39A9008FF328 /* ggml-model-q4_k.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */; };
-		CA4FF0BF2C0A39A9008FF328 /* mmproj-model-f16.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */; };
+		CA4FF0C32C0A49BD008FF328 /* MobileVLM-3B-mmproj-f16.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0C02C0A49BD008FF328 /* MobileVLM-3B-mmproj-f16.gguf */; };
+		CA4FF0C42C0A49BD008FF328 /* MobileVLM-3B-Q4_K_M.gguf in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF0C12C0A49BD008FF328 /* MobileVLM-3B-Q4_K_M.gguf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,8 @@
 		CA2B83692C08DE9F00A1DAA4 /* LLMPrototypeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMPrototypeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CA2B83762C08E74C00A1DAA4 /* ScreenshotAnalyzerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAnalyzerViewModel.swift; sourceTree = "<group>"; };
 		CA4FF0A72C09010A008FF328 /* llmfarm_core.swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = llmfarm_core.swift; sourceTree = "<group>"; };
-		CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ggml-model-q4_k.gguf"; sourceTree = "<group>"; };
-		CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mmproj-model-f16.gguf"; sourceTree = "<group>"; };
+		CA4FF0C02C0A49BD008FF328 /* MobileVLM-3B-mmproj-f16.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MobileVLM-3B-mmproj-f16.gguf"; sourceTree = "<group>"; };
+		CA4FF0C12C0A49BD008FF328 /* MobileVLM-3B-Q4_K_M.gguf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MobileVLM-3B-Q4_K_M.gguf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +109,7 @@
 		CA2B834A2C08DE9D00A1DAA4 /* LLMPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				CA4FF0BD2C0A39A9008FF328 /* BakLLaVAModel */,
+				CA4FF0C22C0A49BD008FF328 /* Model */,
 				CA2B834B2C08DE9D00A1DAA4 /* LLMPrototypeApp.swift */,
 				CA2B834D2C08DE9D00A1DAA4 /* ScreenshotAnalyzerView.swift */,
 				CA2B834F2C08DE9E00A1DAA4 /* Assets.xcassets */,
@@ -152,13 +152,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CA4FF0BD2C0A39A9008FF328 /* BakLLaVAModel */ = {
+		CA4FF0C22C0A49BD008FF328 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA4FF0BB2C0A39A9008FF328 /* ggml-model-q4_k.gguf */,
-				CA4FF0BC2C0A39A9008FF328 /* mmproj-model-f16.gguf */,
+				CA4FF0C02C0A49BD008FF328 /* MobileVLM-3B-mmproj-f16.gguf */,
+				CA4FF0C12C0A49BD008FF328 /* MobileVLM-3B-Q4_K_M.gguf */,
 			);
-			path = BakLLaVAModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,10 +272,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA4FF0BE2C0A39A9008FF328 /* ggml-model-q4_k.gguf in Resources */,
+				CA4FF0C42C0A49BD008FF328 /* MobileVLM-3B-Q4_K_M.gguf in Resources */,
+				CA4FF0C32C0A49BD008FF328 /* MobileVLM-3B-mmproj-f16.gguf in Resources */,
 				CA2B83532C08DE9E00A1DAA4 /* Preview Assets.xcassets in Resources */,
 				CA2B83502C08DE9E00A1DAA4 /* Assets.xcassets in Resources */,
-				CA4FF0BF2C0A39A9008FF328 /* mmproj-model-f16.gguf in Resources */,
 				CA4FF0A82C09010A008FF328 /* llmfarm_core.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -5,9 +5,10 @@ import llmfarm_core
 
 class ScreenshotAnalyzerViewModel: ObservableObject {
     @Published var aiModelReady: Bool = false
-    @Published var currentScreenShotURL: URL?
-    @Published var loading: Bool = false
+    @Published var outputLoading: Bool = false
+
     @Published var output: String? = nil
+    @Published var currentScreenShotURL: URL?
     
     var aiModel: AI? = nil
     
@@ -16,22 +17,35 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
     }
 
     func takeAndAnalyzeScreenshot() {
-        guard let screenshot = saveScreenshot() else {
-            return
+        self.output = nil
+        self.currentScreenShotURL = nil
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [weak self] in
+            guard let self = self else { return }
+            guard let screenshot = saveScreenshot() else {
+                return
+            }
+            self.currentScreenShotURL = screenshot
+            analyzeScreenshot(screenshot)
         }
-        self.currentScreenShotURL = screenshot
-        analyzeScreenshot(screenshot)
     }
     
     private func setupAiModal() {
 
-        let modelPath = Bundle.main.url(forResource: "ggml-model-q4_k", withExtension: "gguf")!.path()
+        guard let modelPath = Bundle.main.url(forResource: "MobileVLM-3B-Q4_K_M", withExtension: "gguf")?.path() else {
+            print("Could not load provided model")
+            return
+        }
         //load model
         let ai = AI(_modelPath: modelPath ,_chatName: "chat")
         var params:ModelAndContextParams = .default
 
         //set custom prompt format
-        let clipModelPath = Bundle.main.url(forResource: "mmproj-model-f16", withExtension: "gguf")!.path()
+        guard let clipModelPath = Bundle.main.url(forResource: "MobileVLM-3B-mmproj-f16", withExtension: "gguf")?.path() else {
+            print("Could not load clip model")
+            return
+        }
+
         params.clip_model = clipModelPath
         params.promptFormat = .Custom
         params.custom_prompt_format = """
@@ -62,14 +76,14 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
             return false
         }
         
-        loading = true
+        outputLoading = true
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             let input_text = "Describe what this computer screenshot shows"
-            _ = self.aiModel?.model?.make_image_embed("/Users/ilaydasimsek/Library/Containers/com.ilaydasimsek.LLMPrototype/Data/tmp/1717090088_1.jpg")
+            _ = self.aiModel?.model?.make_image_embed(screenshotUrl.path())
             let output = try? self.aiModel?.model?.predict(input_text, mainCallback)
             DispatchQueue.main.async {
-                self.loading = false
+                self.outputLoading = false
                 self.output = output
             }
         }
