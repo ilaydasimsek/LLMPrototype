@@ -2,36 +2,76 @@ import Foundation
 import SwiftUI
 import Foundation
 import llmfarm_core
+import Combine
+
+class CountDownTimer: ObservableObject {
+    
+    @Published var countDown: Int
+    @Published var timerRunning: Bool = false
+    let completionCallback: () -> Void
+    var timer: Timer?
+    
+    init(countDown: Int = 5, completionCallback: @escaping () -> Void) {
+        self.countDown = countDown
+        self.completionCallback = completionCallback
+    }
+    
+    func startTimer() {
+        timerRunning = true
+        self.timer = Timer.scheduledTimer(timeInterval: 1,
+                                          target: self,
+                                          selector: #selector(onCountDownTick),
+                                          userInfo: nil,
+                                          repeats: true)
+    }
+    @objc
+    func onCountDownTick() {
+        if countDown <= 1 {
+            timer?.invalidate()
+            completionCallback()
+            timerRunning = false
+        } else {
+            countDown -= 1
+        }
+    }
+}
 
 class ScreenshotAnalyzerViewModel: ObservableObject {
     @Published var aiModelReady: Bool = false
     @Published var outputLoading: Bool = false
-
-    @Published var output: String? = nil
-    @Published var currentScreenShotURL: URL?
     
+    @Published var screenshotAnalysisResult: String = ""
+    @Published var currentScreenShotURL: URL?
+    @Published var countdownTimer: CountDownTimer?
+    
+    var countdownTimerCancellable: AnyCancellable? = nil
+
     var aiModel: AI? = nil
     
     init() {
         setupAiModal()
     }
-
+    
     func takeAndAnalyzeScreenshot() {
-        self.output = nil
+        self.screenshotAnalysisResult = ""
         self.currentScreenShotURL = nil
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [weak self] in
-            guard let self = self else { return }
-            guard let screenshot = saveScreenshot() else {
+        
+        self.countdownTimer = CountDownTimer { [weak self] in
+            guard let self = self, let screenshot = saveScreenshot() else {
                 return
             }
             self.currentScreenShotURL = screenshot
             analyzeScreenshot(screenshot)
+            countdownTimerCancellable?.cancel()
         }
+        self.countdownTimerCancellable = self.countdownTimer?.objectWillChange.sink { [weak self] (_) in
+            self?.objectWillChange.send()
+        }
+        countdownTimer?.startTimer()
     }
     
     private func setupAiModal() {
-
+        
         guard let modelPath = Bundle.main.url(forResource: "MobileVLM-3B-Q4_K_M", withExtension: "gguf")?.path() else {
             print("Could not load provided model")
             return
@@ -39,13 +79,13 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
         //load model
         let ai = AI(_modelPath: modelPath ,_chatName: "chat")
         var params:ModelAndContextParams = .default
-
+        
         //set custom prompt format
         guard let clipModelPath = Bundle.main.url(forResource: "MobileVLM-3B-mmproj-f16", withExtension: "gguf")?.path() else {
             print("Could not load clip model")
             return
         }
-
+        
         params.clip_model = clipModelPath
         params.promptFormat = .Custom
         params.custom_prompt_format = """
@@ -53,23 +93,29 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
         USER: {prompt}
         ASSISTANT:
         """
-
+        
         ai.initModel(ModelInference.LLama_mm, contextParams:params)
         ai.model?.modelLoadCompleteCallback = { result in
             self.aiModelReady = true
-          
+            
         }
         ai.loadModel()
         self.aiModel = ai
     }
-
-
+    
+    
     private func analyzeScreenshot(_ screenshotUrl: URL) {
-        let maxOutputLength = 256
+        let maxOutputLength = 550
         var total_output = 0
-
+        
         func mainCallback(_ str: String, _ time: Double) -> Bool {
             total_output += str.count
+            DispatchQueue.main.sync {
+                if (self.outputLoading) {
+                    self.outputLoading = false
+                }
+                self.screenshotAnalysisResult += str
+            }
             if(total_output>maxOutputLength){
                 return true
             }
@@ -81,20 +127,16 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
             guard let self = self else { return }
             let input_text = "Describe what this computer screenshot shows"
             _ = self.aiModel?.model?.make_image_embed(screenshotUrl.path())
-            let output = try? self.aiModel?.model?.predict(input_text, mainCallback)
-            DispatchQueue.main.async {
-                self.outputLoading = false
-                self.output = output
-            }
+            let _ = try? self.aiModel?.model?.predict(input_text, mainCallback)
         }
     }
-
+    
     private func saveScreenshot() -> URL? {
         let tempDirectoryURL = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
-
+        
         return takeScreenshot(folderName: tempDirectoryURL.path())
     }
-
+    
     private func takeScreenshot(folderName: String) -> URL? {
         
         var displayCount: UInt32 = 0;
@@ -112,7 +154,7 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
             print("error: \(result)")
             return nil
         }
-           
+        
         for i in 1...displayCount {
             let unixTimestamp = createTimeStamp()
             let fileUrl = URL(fileURLWithPath: folderName + "\(unixTimestamp)" + "_" + "\(i)" + ".jpg", isDirectory: true)
@@ -132,7 +174,7 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
         }
         return fileUrls.first
     }
-
+    
     private func createTimeStamp() -> Int32 {
         return Int32(Date().timeIntervalSince1970)
     }
