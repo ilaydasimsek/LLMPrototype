@@ -105,7 +105,7 @@ class ScreenshotAnalyzerViewModel: ObservableObject {
     
     
     private func analyzeScreenshot(_ screenshotUrl: URL) {
-        let maxOutputLength = 550
+        let maxOutputLength = 1000
         var total_output = 0
         
         func mainCallback(_ str: String, _ time: Double) -> Bool {

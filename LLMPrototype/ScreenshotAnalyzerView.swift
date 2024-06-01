@@ -23,16 +23,20 @@ struct ScreenshotAnalyzerView: View {
             }
             Spacer()
             if let timer = viewModel.countdownTimer, timer.timerRunning == true {
-                Text(String(timer.countDown))
-                    .font(.largeTitle)
-                    .frame(maxWidth: .infinity)
-                    
+                VStack {
+                    Text("Will Take a Screenshot in")
+                    Text(String(timer.countDown))
+                        .font(.largeTitle)
+                }
+                .frame(maxWidth: .infinity)
+                
+                
             } else {
                 Button("Take Screenshot and Analyze") {
                     viewModel.takeAndAnalyzeScreenshot()
                 }.disabled(!viewModel.aiModelReady || viewModel.outputLoading)
             }
-           
+            
         }
         .padding()
     }
